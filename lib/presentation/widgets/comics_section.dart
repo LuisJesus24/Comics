@@ -14,7 +14,11 @@ class ComicsSection extends ConsumerWidget {
 
     return comicsAsync.when(
       data: (comics) {
-        return ComicsHorizontalList(title: name, comics: comics);
+        return ComicsHorizontalList(title: name, comics: comics, loadNextPage: () {
+          print('Llamando a cargar siguiente pagina');
+
+          
+        },);
       },
       error: (_, e) => Text('Error $e'),
       loading: () => const SizedBox(),

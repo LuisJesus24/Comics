@@ -34,7 +34,11 @@ class ComicVineDatasource extends ComicsDatasource {
   Future<List<Comic>> getPopularComics() async {
     final response = await dio.get(
       'issues/',
-      queryParameters: {'sort': 'store_date:desc', 'limit': 50},
+      queryParameters: {
+        'format': 'json',
+        'sort': 'cover_date:desc',
+        'limit': 10,
+      },
     );
 
     if (response.statusCode != 200) {
@@ -55,7 +59,7 @@ class ComicVineDatasource extends ComicsDatasource {
   Future<List<Comic>> searchComics(String query) async {
     final response = await dio.get(
       'search/',
-      queryParameters: {'query': query, 'resources': 'issue', 'limit': 20},
+      queryParameters: {'query': query, 'resources': 'issue', 'limit': 7},
     );
 
     if (response.statusCode != 200) {

@@ -3,15 +3,44 @@ import 'package:comics/domain/entities/comic.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class ComicsHorizontalList extends StatelessWidget {
+class ComicsHorizontalList extends StatefulWidget {
   final String title;
   final List<Comic> comics;
+  final VoidCallback? loadNextPage;
 
   const ComicsHorizontalList({
     super.key,
     required this.title,
     required this.comics,
+    this.loadNextPage,
   });
+
+  @override
+  State<ComicsHorizontalList> createState() => _ComicsHorizontalListState();
+}
+
+class _ComicsHorizontalListState extends State<ComicsHorizontalList> {
+  final scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    scrollController.addListener(() {
+      if (widget.loadNextPage == null) return;
+
+      if ( scrollController.position.pixels + 200 >=  scrollController.position.maxScrollExtent) {
+        print('Cargar siguiente pagina');
+        widget.loadNextPage!();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +52,7 @@ class ComicsHorizontalList extends StatelessWidget {
           padding: EdgeInsets.all(16),
 
           child: Text(
-            title,
+            widget.title,
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
@@ -31,10 +60,12 @@ class ComicsHorizontalList extends StatelessWidget {
         SizedBox(
           height: 200,
           child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            controller: scrollController,
             scrollDirection: Axis.horizontal,
-            itemCount: comics.length,
+            itemCount: widget.comics.length,
             itemBuilder: (BuildContext context, int index) {
-              final comic = comics[index];
+              final comic = widget.comics[index];
 
               return Container(
                 width: 140,
