@@ -1,9 +1,12 @@
-import 'package:comics/config/router/app_router.dart';
 import 'package:flutter/material.dart';
+
+import 'package:comics/config/router/app_router.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:comics/config/theme/app_theme.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() async {
+Future<void> main() async {
   await dotenv.load(fileName: '.env');
 
   runApp(ProviderScope(child: const MainApp()));
@@ -17,7 +20,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: AppTheme().getTheme(),
     );
   }
 }
