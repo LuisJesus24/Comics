@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:comics/presentation/widgets/widgets.dart';
 import 'package:comics/presentation/providers/movies/movies_providers.dart';
 
+
+
 class HomeScreen extends StatelessWidget {
   static const name = 'home-screen';
 
@@ -24,6 +26,8 @@ class _HomeView extends ConsumerStatefulWidget {
   _HomeViewState createState() => _HomeViewState();
 }
 
+enum MovieCardType { poster, backdrop }
+
 class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   void initState() {
@@ -31,17 +35,35 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
     ref.read(nowPlayingMoviesProvider.notifier).loadnextPage();
   }
+  
 
   @override
   Widget build(BuildContext context) {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
 
-    return Column(
-      children: [
+    
 
-        const CustomAppbar(),
+    return CustomScrollView(
+      slivers: [
 
-        MoviesCarouselSlider(movies: nowPlayingMovies)
+        SliverToBoxAdapter(
+          child: const CustomAppbar(),
+        ),
+
+        SliverToBoxAdapter(
+          child: MoviesCarouselSlider(movies: nowPlayingMovies),
+        ),
+
+
+        SliverToBoxAdapter(
+          child: MovieListView(movies: nowPlayingMovies, type: MovieCardType.backdrop,)
+        ),
+
+        SliverToBoxAdapter(
+          child: MovieListView(movies: nowPlayingMovies, type: MovieCardType.poster,)
+        ),
+
+        
 
 
         // Expanded(

@@ -1,5 +1,5 @@
 import 'package:comics/domain/entities/movie.dart';
-import 'package:comics/presentation/widgets/movies/movie_carousel_image.dart';
+import 'package:comics/presentation/widgets/movies/movie_carousel/movie_carousel_image.dart';
 import 'package:flutter/material.dart';
 
 class MovieCarouselItem extends StatelessWidget {
@@ -29,11 +29,13 @@ class MovieCarouselItem extends StatelessWidget {
 
         border: Border.all(
           color: isMain
-              ? Colors.white70
+              ? Colors.white
               : Colors.transparent,
 
           width: 4,
         ),
+
+        
       ),
 
       child: ClipRRect(
