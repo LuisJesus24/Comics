@@ -25,6 +25,10 @@ class _MoviesCarouselSliderState
   @override
   Widget build(BuildContext context) {
 
+    if (widget.movies.length < 2) {
+      return const SizedBox.shrink();
+    }
+
     final CarouselSliderController carouselController =
     CarouselSliderController();
 
@@ -96,16 +100,21 @@ class _MoviesCarouselSliderState
                       dotWidth: 8,
 
                       activeDotColor: colors.primary,
-                      dotColor: Colors.grey.shade700,
+                      dotColor: colors.secondary,
                     )
 
                   : WormEffect(
-                      dotHeight: 8,
-                      dotWidth: 8,
 
-                      activeDotColor: colors.secondary ,
-                      dotColor: Colors.grey.shade700,
-                    ),
+                    dotHeight: 8,
+                    dotWidth: 8,
+
+                    spacing: 8,
+
+                    radius: 20,
+
+                    activeDotColor: colors.primary,
+                    dotColor: colors.secondary,
+                  ),
             )
           ),
         )

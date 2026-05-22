@@ -59,9 +59,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
           child: MovieListView(movies: nowPlayingMovies, type: MovieCardType.backdrop,)
         ),
 
-        SliverToBoxAdapter(
-          child: MovieListView(movies: nowPlayingMovies, type: MovieCardType.poster,)
-        ),
+        
 
         
 

@@ -1,3 +1,4 @@
+
 import 'package:comics/domain/entities/movie.dart';
 import 'package:comics/presentation/screens/movies/home_screen.dart';
 import 'package:comics/presentation/widgets/movies/movie_list_view/movie_list_view_card.dart';
@@ -13,8 +14,6 @@ class MovieListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final isPoster = type == MovieCardType.poster;
-
 
     return SizedBox(
 
@@ -27,9 +26,7 @@ class MovieListView extends StatelessWidget {
             final movie = movies[index];
         
             return MovieListViewCard(
-              imageUrl: isPoster
-                ? movie.posterPath
-                : movie.backdropPath,
+              movie: movie,
               type: type,
             );
           },
