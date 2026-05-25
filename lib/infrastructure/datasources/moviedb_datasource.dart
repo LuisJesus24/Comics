@@ -12,9 +12,7 @@ class MoviedbDatasource extends MoviesDatasource {
   final dio = Dio(
     BaseOptions(
       baseUrl: 'https://api.themoviedb.org/3',
-      queryParameters: {
-        'api_key': Environment.theMovieDbKey,
-      },
+      queryParameters: {'api_key': Environment.theMovieDbKey},
     ),
   );
 
@@ -34,13 +32,52 @@ class MoviedbDatasource extends MoviesDatasource {
 
   @override
   Future<MovieImages> getMovieImages(int movieId) async {
-
-    final response = await dio.get(
-      '/movie/$movieId/images',
-    );
+    final response = await dio.get('/movie/$movieId/images');
 
     final imagesResponse = MovieImagesResponse.fromJson(response.data);
 
     return MovieImagesMapper.toEntity(imagesResponse);
+  }
+
+  @override
+  Future<List<Movie>> getPopular({int page = 1}) async {
+    final response = await dio.get('/movie/popular');
+
+    final movieDbResponse = MovieDbResponse.fromJson(response.data);
+
+    final List<Movie> movies = movieDbResponse.results
+        .where((moviedb) => moviedb.posterPath != 'no poster')
+        .map((moviedb) => MovieMapper.movieDbToEntity(moviedb))
+        .toList();
+
+    return movies;
+  }
+
+  @override
+  Future<List<Movie>> getTopRated({int page = 1}) async {
+    final response = await dio.get('/movie/top_rated');
+
+    final movieDbResponse = MovieDbResponse.fromJson(response.data);
+
+    final List<Movie> movies = movieDbResponse.results
+        .where((moviedb) => moviedb.posterPath != 'no poster')
+        .map((moviedb) => MovieMapper.movieDbToEntity(moviedb))
+        .toList();
+
+    return movies;
+  }
+
+  @override
+  Future<List<Movie>> getUpcoming({int page = 1}) async {
+    final response = await dio.get('/movie/upcoming');
+
+    final movieDbResponse = MovieDbResponse.fromJson(response.data);
+
+    final List<Movie> movies = movieDbResponse.results
+        .where((moviedb) => moviedb.posterPath != 'no poster')
+        .map((moviedb) => MovieMapper.movieDbToEntity(moviedb))
+        .toList();
+
+    return movies;
   }
 }

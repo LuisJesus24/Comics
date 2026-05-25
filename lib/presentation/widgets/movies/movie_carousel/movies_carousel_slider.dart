@@ -1,3 +1,6 @@
+import 'package:comics/presentation/widgets/movies/cards/movie_card.dart';
+import 'package:comics/presentation/widgets/movies/cards/movie_card_type.dart';
+import 'package:comics/presentation/widgets/movies/listviews/movie_horizontal_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:comics/domain/entities/movie.dart';
 import 'package:comics/presentation/widgets/movies/movie_carousel/movie_carousel_item.dart';
@@ -7,33 +10,25 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class MoviesCarouselSlider extends StatefulWidget {
   final List<Movie> movies;
 
-  const MoviesCarouselSlider({
-    super.key,
-    required this.movies,
-  });
+  const MoviesCarouselSlider({super.key, required this.movies});
 
   @override
-  State<MoviesCarouselSlider> createState() =>
-      _MoviesCarouselSliderState();
+  State<MoviesCarouselSlider> createState() => _MoviesCarouselSliderState();
 }
 
-class _MoviesCarouselSliderState
-    extends State<MoviesCarouselSlider> {
-
+class _MoviesCarouselSliderState extends State<MoviesCarouselSlider> {
   int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-
     if (widget.movies.length < 2) {
       return const SizedBox.shrink();
     }
 
     final CarouselSliderController carouselController =
-    CarouselSliderController();
+        CarouselSliderController();
 
-    final screenHeight =
-        MediaQuery.of(context).size.height;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     final useScrolling = widget.movies.length > 5;
 
@@ -43,30 +38,28 @@ class _MoviesCarouselSliderState
       children: [
         SizedBox(
           height: screenHeight * 0.6,
-        
-          child: CarouselSlider.builder(
 
+          child: CarouselSlider.builder(
             carouselController: carouselController,
 
             itemCount: widget.movies.length,
-        
+
             itemBuilder: (context, index, realIndex) {
-        
               final movie = widget.movies[index];
-        
+
               return MovieCarouselItem(
                 movie: movie,
                 isMain: index == currentIndex,
               );
             },
-        
+
             options: CarouselOptions(
               height: screenHeight * 0.6,
               autoPlay: true,
               viewportFraction: 0.8,
               enlargeCenterPage: true,
               enlargeFactor: 0.17,
-        
+
               onPageChanged: (index, reason) {
                 setState(() {
                   currentIndex = index;
@@ -76,23 +69,19 @@ class _MoviesCarouselSliderState
           ),
         ),
 
-        SizedBox(height: 10,),
+        SizedBox(height: 10),
 
         Align(
-
           alignment: Alignment.center,
           child: SizedBox(
-          
             width: 120,
             height: 20,
-          
-          
+
             child: AnimatedSmoothIndicator(
               activeIndex: currentIndex,
               count: widget.movies.length,
 
               effect: useScrolling
-
                   ? ScrollingDotsEffect(
                       maxVisibleDots: 5,
 
@@ -102,22 +91,20 @@ class _MoviesCarouselSliderState
                       activeDotColor: colors.primary,
                       dotColor: colors.secondary,
                     )
-
                   : WormEffect(
+                      dotHeight: 8,
+                      dotWidth: 8,
 
-                    dotHeight: 8,
-                    dotWidth: 8,
+                      spacing: 8,
 
-                    spacing: 8,
+                      radius: 20,
 
-                    radius: 20,
-
-                    activeDotColor: colors.primary,
-                    dotColor: colors.secondary,
-                  ),
-            )
+                      activeDotColor: colors.primary,
+                      dotColor: colors.secondary,
+                    ),
+            ),
           ),
-        )
+        ),
       ],
     );
   }

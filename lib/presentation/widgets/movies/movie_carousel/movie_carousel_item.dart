@@ -1,9 +1,9 @@
 import 'package:comics/domain/entities/movie.dart';
 import 'package:comics/presentation/widgets/movies/movie_carousel/movie_carousel_image.dart';
+import 'package:comics/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class MovieCarouselItem extends StatelessWidget {
-
   final Movie movie;
   final bool isMain;
 
@@ -15,35 +15,25 @@ class MovieCarouselItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
 
-      margin: const EdgeInsets.symmetric(
-        horizontal: 6,
-        vertical: 10,
-      ),
+      margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
 
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
 
         border: Border.all(
-          color: isMain
-              ? Colors.white
-              : Colors.transparent,
+          color: isMain ? Colors.white : Colors.transparent,
 
           width: 4,
         ),
-
-        
       ),
 
       child: ClipRRect(
         borderRadius: BorderRadius.circular(25),
 
-        child: MovieCarouselImage(
-          imageUrl: movie.posterPath,
-        ),
+        child: MovieCarouselImage(imageUrl: movie.posterPath),
       ),
     );
   }
