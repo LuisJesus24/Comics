@@ -9,16 +9,19 @@ class MovieCardLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MovieLogoContent(
-      logoUrl: logoUrl,
-
-      title: title,
-
-      width: 180,
-
-      height: 80,
-
-      fontSize: 24,
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: MovieLogoContent(
+        logoUrl: logoUrl,
+      
+        title: title,
+      
+        width: 180,
+      
+        height: 80,
+      
+        fontSize: 24,
+      ),
     );
-  }
+  } 
 }

@@ -28,15 +28,12 @@ class MovieLogoContent extends StatelessWidget {
       width: width,
       height: height,
 
-      child: Align(
-        alignment: Alignment.bottomLeft,
-
-        child: hasLogo
+      child:  hasLogo
             ? FadeInDown(
                 child: CachedNetworkImage(
                   imageUrl: logoUrl!,
 
-                  fit: BoxFit.contain,
+                  fit: BoxFit.contain, 
 
                   fadeInDuration: Duration.zero,
 
@@ -62,7 +59,7 @@ class MovieLogoContent extends StatelessWidget {
                   ),
                 ),
               ),
-      ),
+      
     );
   }
 }

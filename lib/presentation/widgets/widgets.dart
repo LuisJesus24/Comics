@@ -19,12 +19,9 @@ export 'movies/components/movie_backdrop.dart';
 export 'movies/components/movie_card_info.dart';
 export 'movies/components/movie_gradient.dart';
 export 'movies/components/movie_logo_content.dart';
-export 'movies/components/modern_movie_gradient.dart';
-export 'movies/components/palette_background.dart';
 
 //Hero
 export 'movies/hero/movie_logo.dart';
-export 'movies/hero/movie_hero_banner.dart';
 
 //Section
 export 'movies/sections/movie_section.dart';

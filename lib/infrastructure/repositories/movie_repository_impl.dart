@@ -14,7 +14,7 @@ class MovieRepositoryImpl extends MoviesRepository {
   }
 
   @override
-  Future<MovieImages> getMovieImages(int movieId) {
+  Future<MovieImages> getMovieImages(String movieId) {
     return moviedbDatasource.getMovieImages(movieId);
   }
 
@@ -31,5 +31,10 @@ class MovieRepositoryImpl extends MoviesRepository {
   @override
   Future<List<Movie>> getUpcoming({int page = 1}) {
     return moviedbDatasource.getUpcoming();
+  }
+
+  @override
+  Future<Movie> getMovieById(String movieId) {
+    return moviedbDatasource.getMovieById(movieId);
   }
 }

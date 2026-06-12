@@ -4,7 +4,9 @@ import 'package:comics/domain/entities/movie.dart';
 import 'package:comics/domain/entities/movie_images.dart';
 import 'package:comics/infrastructure/mappers/movie_images_mapper.dart';
 import 'package:comics/infrastructure/mappers/movie_mapper.dart';
+import 'package:comics/infrastructure/models/moviedb/movie_details.dart';
 import 'package:comics/infrastructure/models/moviedb/movie_images_response.dart';
+import 'package:comics/infrastructure/models/moviedb/movie_moviedb.dart';
 import 'package:comics/infrastructure/models/moviedb/moviedb_response.dart';
 import 'package:dio/dio.dart';
 
@@ -31,7 +33,7 @@ class MoviedbDatasource extends MoviesDatasource {
   }
 
   @override
-  Future<MovieImages> getMovieImages(int movieId) async {
+  Future<MovieImages> getMovieImages(String movieId) async {
     final response = await dio.get('/movie/$movieId/images');
 
     final imagesResponse = MovieImagesResponse.fromJson(response.data);
@@ -79,5 +81,17 @@ class MoviedbDatasource extends MoviesDatasource {
         .toList();
 
     return movies;
+  }
+
+  @override
+  Future<Movie> getMovieById(String movieId) async {
+    final response = await dio.get('/movie/$movieId');
+
+    if (response.statusCode != 200)
+      throw Exception('movie with id: $movieId not found');
+
+    final movieDbResponse = MovieDetails.fromJson(response.data);
+
+    return MovieMapper.movieDetailsToEntity(movieDbResponse);
   }
 }

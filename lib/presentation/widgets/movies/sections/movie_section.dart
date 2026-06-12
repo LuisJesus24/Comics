@@ -17,7 +17,7 @@ class MovieSection extends StatelessWidget {
     required this.title,
     required this.movies,
     required this.type,
-  });
+  }); 
 
   @override
   Widget build(BuildContext context) {

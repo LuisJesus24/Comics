@@ -16,7 +16,7 @@ class MovieHorizontalListView extends StatelessWidget {
     required this.type,
   });
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     return SizedBox(
       height: type == MovieCardType.poster ? 320 : 220,

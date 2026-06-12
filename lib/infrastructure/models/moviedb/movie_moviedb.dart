@@ -1,3 +1,4 @@
+
 class MovieMovieDb {
   final bool adult;
   final String backdropPath;
@@ -36,7 +37,9 @@ class MovieMovieDb {
   factory MovieMovieDb.fromJson(Map<String, dynamic> json) => MovieMovieDb(
     adult: json["adult"],
     backdropPath: json["backdrop_path"],
-    genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
+    genreIds: List<int>.from(json["genre_ids"] as List? ?? []
+      .where((x) => x != null)
+      .map((x) => x)),
     id: json["id"],
     title: json["title"],
     originalLanguage: json["original_language"]!,
@@ -48,7 +51,8 @@ class MovieMovieDb {
     softcore: json["softcore"],
     video: json["video"],
     voteAverage: json["vote_average"]?.toDouble(),
-    voteCount: json["vote_count"],
+    voteCount: json["vote_count"], 
+    
   );
 
   Map<String, dynamic> toJson() => {
@@ -69,4 +73,8 @@ class MovieMovieDb {
     "vote_average": voteAverage,
     "vote_count": voteCount,
   };
+
+
+
 }
+

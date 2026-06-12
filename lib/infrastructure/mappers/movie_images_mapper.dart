@@ -17,7 +17,7 @@ class MovieImagesMapper {
           .where((backdrop) => backdrop.filePath.isNotEmpty)
           .map(
             (backdrop) =>
-                '$imageBaseUrl${backdrop.filePath}',
+                '$imageBaseUrl${backdrop.filePath}' != '' ? '$imageBaseUrl${backdrop.filePath}' : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoWcWg0E8pSjBNi0TtiZsqu8uD2PAr_K11DA&s',
           )
           .toList(),
 
@@ -25,7 +25,7 @@ class MovieImagesMapper {
           .where((poster) => poster.filePath.isNotEmpty)
           .map(
             (poster) =>
-                '$imageBaseUrl${poster.filePath}',
+                '$imageBaseUrl${poster.filePath}' != '' ? '$imageBaseUrl${poster.filePath}' : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoWcWg0E8pSjBNi0TtiZsqu8uD2PAr_K11DA&s',
           )
           .toList(),
 

@@ -1,26 +1,51 @@
 import 'package:flutter/material.dart';
 
-class MovieGradient extends StatelessWidget {
-  final Color accentColor;
-
-  const MovieGradient({super.key, this.accentColor = Colors.transparent});
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.transparent,
-            accentColor.withOpacity(0.4),
-            Colors.black87,
-            Colors.black,
-          ],
-          stops: const [0.0, 0.5, 0.75, 1.0],
-        ),
-      ),
+class MovieGradient {
+  
+  static LinearGradient bottomCenter =
+    const LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Colors.transparent,
+        Colors.black87
+      ],
+      stops: [
+        0.7,
+        1.0
+      ]
     );
-  }
+  
+
+  static LinearGradient topLeft =
+    const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        Colors.black87,
+        Colors.black26,
+        Colors.transparent,
+      ],
+      stops: [
+        0.01,
+        0.05,
+        0.35
+      ]
+    );
+  
+  static LinearGradient topRight =
+    const LinearGradient(
+      begin: Alignment.topRight,
+      end: Alignment.bottomLeft,
+      colors: [
+        Colors.black87,
+        Colors.black26,
+        Colors.transparent,
+      ],
+      stops: [
+        0.01,
+        0.05,
+        0.35
+      ]
+    );
 }

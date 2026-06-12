@@ -5,47 +5,50 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:comics/domain/entities/movie.dart';
 
 import 'package:comics/presentation/providers/providers.dart';
-import 'package:comics/presentation/screens/screens.dart';
+import 'package:go_router/go_router.dart';
 
 import '../components/movie_backdrop.dart';
 import '../components/movie_gradient.dart';
 
 import 'movie_card_type.dart';
 
-class MovieCard extends ConsumerWidget {
+class MovieCard extends ConsumerStatefulWidget {
   final Movie movie;
   final MovieCardType type;
 
   const MovieCard({super.key, required this.movie, required this.type});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isPoster = type == MovieCardType.poster;
+  MovieCardState createState() => MovieCardState();
+}
 
-    final imageUrl = isPoster ? movie.posterPath : movie.backdropPath;
+class MovieCardState extends ConsumerState<MovieCard> {
+  @override
+  void initState() {
+    super.initState();
 
-    final imagesAsync = ref.watch(movieImagesProvider(movie.id));
+    ref
+        .read(movieImagesProvider.notifier)
+        .imageOfMovies(widget.movie.id.toString());
+  }
 
-    final logoUrl = imagesAsync.when(
-      data: (images) {
-        if (images.logos.isEmpty) {
-          return null;
-        }
+  @override
+  Widget build(BuildContext context) {
+    final isPoster = widget.type == MovieCardType.poster;
 
-        return images.logos.first;
-      },
+    final imageUrl = isPoster
+        ? widget.movie.posterPath
+        : widget.movie.backdropPath;
 
-      loading: () => null,
+    final imagesAsync = ref.watch(
+      movieImagesProvider,
+    )[widget.movie.id.toString()];
 
-      error: (_, __) => null,
-    );
+    if (imagesAsync == null) return Center(child: CircularProgressIndicator(strokeWidth: 2,),);
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => MovieScreen(movie: movie)),
-        );
+        context.push('/movie/${widget.movie.id}');
       },
 
       child: AspectRatio(
@@ -60,9 +63,19 @@ class MovieCard extends ConsumerWidget {
             children: [
               MovieBackdrop(imageUrl: imageUrl),
 
-              const MovieGradient(),
+              if (!isPoster) Container(
+                decoration: BoxDecoration(
+                  gradient: MovieGradient.bottomCenter
+                ),
+              ),
 
-              if (!isPoster) MovieCardInfo(movie: movie, logoUrl: logoUrl),
+              if (!isPoster && imagesAsync != null)
+                MovieCardInfo(
+                  movie: widget.movie,
+                  logoUrl: imagesAsync.logos.isNotEmpty
+                      ? imagesAsync.logos.first
+                      : '',
+                  ),
             ],
           ),
         ),

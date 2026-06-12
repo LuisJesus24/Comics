@@ -24,6 +24,6 @@ class MovieCardInfo extends StatelessWidget {
           children: [MovieCardLogo(logoUrl: logoUrl, title: movie.title)],
         ),
       ),
-    );
+    ); 
   }
 }
