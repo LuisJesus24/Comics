@@ -2,6 +2,9 @@ import 'package:comics/domain/entities/movie.dart';
 import 'package:comics/presentation/providers/movies/movies_repository_provider.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
+
+
+
 final nowPlayingMoviesProvider =
     StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
       final fetchMoreMovies = ref.watch(movieRepositoryProvider).getNowPlaying;

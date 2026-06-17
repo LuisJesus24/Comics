@@ -39,6 +39,8 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final topRatedMovies = ref.watch(topRatedMoviesProvider);
     final upcomingMovies = ref.watch(upcomingMoviesProvider);
 
+    
+
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(child: const CustomAppbar()),
@@ -55,6 +57,8 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
             type: MovieCardType.poster,
           ),
+
+          
         ),
 
         SliverToBoxAdapter(
@@ -103,3 +107,4 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     );
   }
 }
+

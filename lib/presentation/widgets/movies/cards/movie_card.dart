@@ -44,7 +44,7 @@ class MovieCardState extends ConsumerState<MovieCard> {
       movieImagesProvider,
     )[widget.movie.id.toString()];
 
-    if (imagesAsync == null) return Center(child: CircularProgressIndicator(strokeWidth: 2,),);
+    
 
     return GestureDetector(
       onTap: () {
@@ -63,22 +63,41 @@ class MovieCardState extends ConsumerState<MovieCard> {
             children: [
               MovieBackdrop(imageUrl: imageUrl),
 
-              if (!isPoster) Container(
-                decoration: BoxDecoration(
-                  gradient: MovieGradient.bottomCenter
+              if (!isPoster)
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: MovieGradient.bottomCenter,
+                  ),
                 ),
-              ),
 
-              if (!isPoster && imagesAsync != null)
-                MovieCardInfo(
+              if (imagesAsync == null) _SkeletonLoading(poster: isPoster),
+
+              if(imagesAsync != null) MovieCardInfo(
                   movie: widget.movie,
-                  logoUrl: imagesAsync.logos.isNotEmpty
+                  logoUrl: imagesAsync .logos.isNotEmpty
                       ? imagesAsync.logos.first
                       : '',
-                  ),
+                ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _SkeletonLoading extends StatelessWidget {
+  final bool poster;
+  const _SkeletonLoading({required this.poster});
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned.fill(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+
+        child: Placeholder(),
+        
       ),
     );
   }

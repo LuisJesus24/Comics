@@ -2,6 +2,9 @@ import 'package:comics/domain/entities/movie_images.dart';
 import 'package:comics/presentation/providers/movies/movies_repository_provider.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
+
+
+
 final movieImagesProvider =
     StateNotifierProvider<ImageMovieNotifier, Map<String, MovieImages>>((ref) {
       final imageMovie = ref.watch(movieRepositoryProvider);
