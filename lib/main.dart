@@ -7,15 +7,13 @@ import 'package:comics/config/theme/app_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
-
   runApp(ProviderScope(child: const MainApp()));
 }
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
-
-
 
   @override
   Widget build(BuildContext context) {
