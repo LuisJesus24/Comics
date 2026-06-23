@@ -8,20 +8,14 @@ class MovieCarouselImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-
     return CachedNetworkImage(
       imageUrl: imageUrl,
       fit: BoxFit.cover,
       width: double.infinity,
 
-      placeholder: (context, url) =>
-      const Center(
-        child: CircularProgressIndicator(),
-      ),
+      placeholder: (context, url) => Container(color: Colors.grey[850]),
 
-      errorWidget: (context, url, error) =>
-          const Icon(Icons.error),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }
 }

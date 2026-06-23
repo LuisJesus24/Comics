@@ -25,7 +25,7 @@ class MoviedbDatasource extends MoviesDatasource {
     final movieDbResponse = MovieDbResponse.fromJson(response.data);
 
     final List<Movie> movies = movieDbResponse.results
-        .where((moviedb) => moviedb.posterPath != 'no poster')
+        .where((moviedb) => moviedb.posterPath.isNotEmpty)
         .map((moviedb) => MovieMapper.movieDbToEntity(moviedb))
         .toList();
 
@@ -48,7 +48,7 @@ class MoviedbDatasource extends MoviesDatasource {
     final movieDbResponse = MovieDbResponse.fromJson(response.data);
 
     final List<Movie> movies = movieDbResponse.results
-        .where((moviedb) => moviedb.posterPath != 'no poster')
+        .where((moviedb) => moviedb.posterPath.isNotEmpty)
         .map((moviedb) => MovieMapper.movieDbToEntity(moviedb))
         .toList();
 
@@ -62,7 +62,7 @@ class MoviedbDatasource extends MoviesDatasource {
     final movieDbResponse = MovieDbResponse.fromJson(response.data);
 
     final List<Movie> movies = movieDbResponse.results
-        .where((moviedb) => moviedb.posterPath != 'no poster')
+        .where((moviedb) => moviedb.posterPath.isNotEmpty)
         .map((moviedb) => MovieMapper.movieDbToEntity(moviedb))
         .toList();
 
@@ -76,7 +76,7 @@ class MoviedbDatasource extends MoviesDatasource {
     final movieDbResponse = MovieDbResponse.fromJson(response.data);
 
     final List<Movie> movies = movieDbResponse.results
-        .where((moviedb) => moviedb.posterPath != 'no poster')
+        .where((moviedb) => moviedb.posterPath.isNotEmpty)
         .map((moviedb) => MovieMapper.movieDbToEntity(moviedb))
         .toList();
 
@@ -93,5 +93,22 @@ class MoviedbDatasource extends MoviesDatasource {
     final movieDbResponse = MovieDetails.fromJson(response.data);
 
     return MovieMapper.movieDetailsToEntity(movieDbResponse);
+  }
+
+  @override
+  Future<List<Movie>> searchMovies(String query, {int page = 1}) async {
+    final response = await dio.get(
+      '/search/movie',
+      queryParameters: {'query': query, 'page': page},
+    );
+
+    final movieDbResponse = MovieDbResponse.fromJson(response.data);
+
+    final List<Movie> movies = movieDbResponse.results
+        .where((moviedb) => moviedb.posterPath.isNotEmpty)
+        .map((moviedb) => MovieMapper.movieDbToEntity(moviedb))
+        .toList();
+
+    return movies;
   }
 }

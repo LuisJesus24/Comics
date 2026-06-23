@@ -5,6 +5,8 @@ import 'package:comics/domain/entities/movie.dart';
 import 'package:comics/presentation/providers/actors/actors_by_movie_provider.dart';
 import 'package:comics/presentation/providers/movies/movie_images_provider.dart';
 import 'package:comics/presentation/providers/movies/movie_info_provider.dart';
+import 'package:comics/presentation/providers/storage/Is_favorite_movie_provider.dart';
+import 'package:comics/presentation/providers/storage/favorites_movies_provider.dart';
 import 'package:comics/presentation/widgets/movies/movie_metadata.dart';
 import 'package:comics/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +56,8 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
   Widget build(BuildContext context) {
     final movie = ref.watch(movieInfoProvider)[widget.movieId];
     final imageMovie = ref.watch(movieImagesProvider)[widget.movieId];
+    final favoritesMap = ref.watch(favoriteMoviesprovider);
+    final isFavorite = favoritesMap.containsKey(movie?.id);
 
     if (movie == null) {
       return const Scaffold(
@@ -77,15 +81,6 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
           Positioned.fill(
             child: Container(
               color: Colors.black.withOpacity((blur / 20) * 0.6),
-            ),
-          ),
-
-          Positioned(
-            top: 100,
-            left: 20,
-            child: Text(
-              progress.toStringAsFixed(2),
-              style: TextStyle(color: Colors.red, fontSize: 30),
             ),
           ),
 
@@ -118,9 +113,31 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
                   actions: [
                     Align(
                       alignment: Alignment.topRight,
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.star_rounded, color: Colors.amber),
+                      child: Stack(
+                        children: [
+                          SizedBox(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: MovieGradient.topRight,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                          onPressed: () async {
+                            // ✅ Actualizar favoritos
+                            ref
+                                .read(favoriteMoviesprovider.notifier)
+                                .toggleFavoriteMovie(movie);
+                          },
+                          // ✅ CAMBIAR ESTO - Usar isFavorite directamente
+                          icon: Icon(
+                            isFavorite
+                                ? Icons.favorite
+                                : Icons.favorite_outline,
+                            color: isFavorite ? Colors.red : Colors.white60,
+                          ),
+                        ),
+                        ],
                       ),
                     ),
                   ],
@@ -247,11 +264,11 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
 
                 SliverToBoxAdapter(child: const SizedBox(height: 80)),
 
-                SliverToBoxAdapter(child: _ActorsByMovie(movieId: movie.id.toString())),
+                SliverToBoxAdapter(
+                  child: _ActorsByMovie(movieId: movie.id.toString()),
+                ),
 
                 SliverToBoxAdapter(child: const SizedBox(height: 80)),
-
-                
               ],
             ),
           ),
@@ -296,8 +313,11 @@ class _ActorsByMovie extends ConsumerWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                Text(actors[index].name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                Text(actors[index].character!, style: TextStyle(fontSize: 12),)
+                Text(
+                  actors[index].name,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                Text(actors[index].character!, style: TextStyle(fontSize: 12)),
               ],
             ),
           );

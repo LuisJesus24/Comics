@@ -10,18 +10,15 @@ class MovieBackdrop extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
-
       child: CachedNetworkImage(
         imageUrl: imageUrl,
-
         fit: BoxFit.cover,
-
         width: double.infinity,
-
-        placeholder: (_, __) =>
-            const Center(child: CircularProgressIndicator()),
-
-        errorWidget: (_, __, ___) => const Icon(Icons.error),
+        placeholder: (context, url) => Container(color: Colors.grey[850]),
+        errorWidget: (context, url, error) => Container(
+          color: Colors.grey[850],
+          child: const Icon(Icons.broken_image, color: Colors.white38),
+        ),
       ),
     );
   }

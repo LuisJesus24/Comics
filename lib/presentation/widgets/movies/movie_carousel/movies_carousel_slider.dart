@@ -77,31 +77,34 @@ class _MoviesCarouselSliderState extends State<MoviesCarouselSlider> {
             width: 120,
             height: 20,
 
-            child: AnimatedSmoothIndicator(
-              activeIndex: currentIndex,
-              count: widget.movies.length,
-
-              effect: useScrolling
-                  ? ScrollingDotsEffect(
-                      maxVisibleDots: 5,
-
-                      dotHeight: 8,
-                      dotWidth: 8,
-
-                      activeDotColor: colors.primary,
-                      dotColor: colors.secondary,
-                    )
-                  : WormEffect(
-                      dotHeight: 8,
-                      dotWidth: 8,
-
-                      spacing: 8,
-
-                      radius: 20,
-
-                      activeDotColor: colors.primary,
-                      dotColor: colors.secondary,
-                    ),
+            child: Center(
+              child: AnimatedSmoothIndicator(
+                
+                activeIndex: currentIndex,
+                count: widget.movies.length,
+              
+                effect: useScrolling
+                    ? ScrollingDotsEffect(
+                        maxVisibleDots: 5,
+              
+                        dotHeight: 8,
+                        dotWidth: 8,
+              
+                        activeDotColor: colors.primary,
+                        dotColor: colors.secondary,
+                      )
+                    : WormEffect(
+                        dotHeight: 8,
+                        dotWidth: 8,
+              
+                        spacing: 8,
+              
+                        radius: 20,
+              
+                        activeDotColor: colors.primary,
+                        dotColor: colors.secondary,
+                      ),
+              ),
             ),
           ),
         ),

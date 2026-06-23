@@ -5,7 +5,7 @@ import 'package:comics/infrastructure/models/moviedb/movie_moviedb.dart';
 class MovieMapper {
   static Movie movieDbToEntity(MovieMovieDb moviebd) => Movie(
     adult: moviebd.adult,
-    backdropPath: (moviebd.backdropPath != '')
+    backdropPath: (moviebd.backdropPath.isNotEmpty)
         ? 'https://image.tmdb.org/t/p/w500${moviebd.backdropPath}'
         : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoWcWg0E8pSjBNi0TtiZsqu8uD2PAr_K11DA&s',
     genreIds: moviebd.genreIds.map((gen) => gen.toString()).toList(),
@@ -14,7 +14,7 @@ class MovieMapper {
     originalTitle: moviebd.originalTitle,
     overview: moviebd.overview,
     popularity: moviebd.popularity,
-    posterPath: (moviebd.posterPath != '')
+    posterPath: (moviebd.posterPath.isNotEmpty)
         ? 'https://image.tmdb.org/t/p/w500${moviebd.posterPath}'
         : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoWcWg0E8pSjBNi0TtiZsqu8uD2PAr_K11DA&s',
     releaseDate: moviebd.releaseDate,

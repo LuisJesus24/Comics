@@ -35,25 +35,36 @@ class MovieMovieDb {
   });
 
   factory MovieMovieDb.fromJson(Map<String, dynamic> json) => MovieMovieDb(
-    adult: json["adult"],
-    backdropPath: json["backdrop_path"],
+    adult: json["adult"] ?? false,
+    backdropPath: json["backdrop_path"] ?? '',
     genreIds: List<int>.from(json["genre_ids"] as List? ?? []
       .where((x) => x != null)
       .map((x) => x)),
     id: json["id"],
-    title: json["title"],
-    originalLanguage: json["original_language"]!,
-    originalTitle: json["original_title"],
-    overview: json["overview"],
-    popularity: json["popularity"]?.toDouble(),
-    posterPath: json["poster_path"],
-    releaseDate: DateTime.parse(json["release_date"]),
-    softcore: json["softcore"],
-    video: json["video"],
-    voteAverage: json["vote_average"]?.toDouble(),
-    voteCount: json["vote_count"], 
+    title: json["title"] ?? '',
+    originalLanguage: json["original_language"] ?? '',
+    originalTitle: json["original_title"] ?? '',
+    overview: json["overview"] ?? '',
+    popularity: json["popularity"]?.toDouble() ?? 0.0,
+    posterPath: json["poster_path"] ?? '',
+    releaseDate: _parseDate(json["release_date"]),
+    softcore: json["softcore"] ?? false,
+    video: json["video"] ?? false,
+    voteAverage: json["vote_average"]?.toDouble() ?? 0.0,
+    voteCount: json["vote_count"] ?? 0, 
     
   );
+
+  static DateTime _parseDate(dynamic dateString) {
+    try {
+      if (dateString == null || dateString.toString().isEmpty) {
+        return DateTime.now();
+      }
+      return DateTime.parse(dateString.toString());
+    } catch (e) {
+      return DateTime.now();
+    }
+  }
 
   Map<String, dynamic> toJson() => {
     "adult": adult,

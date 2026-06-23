@@ -48,7 +48,7 @@ class MovieCardState extends ConsumerState<MovieCard> {
 
     return GestureDetector(
       onTap: () {
-        context.push('/movie/${widget.movie.id}');
+        context.push('/home/0/movie/${widget.movie.id}');
       },
 
       child: AspectRatio(
@@ -70,9 +70,8 @@ class MovieCardState extends ConsumerState<MovieCard> {
                   ),
                 ),
 
-              if (imagesAsync == null) _SkeletonLoading(poster: isPoster),
 
-              if(imagesAsync != null) MovieCardInfo(
+              if(!isPoster && imagesAsync != null) MovieCardInfo(
                   movie: widget.movie,
                   logoUrl: imagesAsync .logos.isNotEmpty
                       ? imagesAsync.logos.first
@@ -86,19 +85,3 @@ class MovieCardState extends ConsumerState<MovieCard> {
   }
 }
 
-class _SkeletonLoading extends StatelessWidget {
-  final bool poster;
-  const _SkeletonLoading({required this.poster});
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned.fill(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-
-        child: Placeholder(),
-        
-      ),
-    );
-  }
-}
