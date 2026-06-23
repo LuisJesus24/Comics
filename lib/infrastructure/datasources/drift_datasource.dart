@@ -1,6 +1,6 @@
-import 'package:comics/config/database/database.dart';
-import 'package:comics/domain/datasources/local_storage_datasource.dart';
-import 'package:comics/domain/entities/movie.dart';
+import 'package:moviedb/config/database/database.dart';
+import 'package:moviedb/domain/datasources/local_storage_datasource.dart';
+import 'package:moviedb/domain/entities/movie.dart';
 
 class DriftDatasource extends LocalStorageDatasource {
   final AppDatabase database;

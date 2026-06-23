@@ -1,4 +1,4 @@
-import 'package:comics/domain/entities/movie.dart';
+import 'package:moviedb/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 

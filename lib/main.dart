@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:comics/config/router/app_router.dart';
+import 'package:moviedb/config/router/app_router.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:comics/config/theme/app_theme.dart';
+import 'package:moviedb/config/theme/app_theme.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

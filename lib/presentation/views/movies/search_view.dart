@@ -1,5 +1,5 @@
-import 'package:comics/presentation/providers/movies/movies_providers.dart';
-import 'package:comics/presentation/widgets/widgets.dart';
+import 'package:moviedb/presentation/providers/movies/movies_providers.dart';
+import 'package:moviedb/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

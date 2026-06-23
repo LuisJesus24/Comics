@@ -1,13 +1,13 @@
-import 'package:comics/config/constants/environment.dart';
-import 'package:comics/domain/datasources/movies_datasource.dart';
-import 'package:comics/domain/entities/movie.dart';
-import 'package:comics/domain/entities/movie_images.dart';
-import 'package:comics/infrastructure/mappers/movie_images_mapper.dart';
-import 'package:comics/infrastructure/mappers/movie_mapper.dart';
-import 'package:comics/infrastructure/models/moviedb/movie_details.dart';
-import 'package:comics/infrastructure/models/moviedb/movie_images_response.dart';
-import 'package:comics/infrastructure/models/moviedb/movie_moviedb.dart';
-import 'package:comics/infrastructure/models/moviedb/moviedb_response.dart';
+import 'package:moviedb/config/constants/environment.dart';
+import 'package:moviedb/domain/datasources/movies_datasource.dart';
+import 'package:moviedb/domain/entities/movie.dart';
+import 'package:moviedb/domain/entities/movie_images.dart';
+import 'package:moviedb/infrastructure/mappers/movie_images_mapper.dart';
+import 'package:moviedb/infrastructure/mappers/movie_mapper.dart';
+import 'package:moviedb/infrastructure/models/moviedb/movie_details.dart';
+import 'package:moviedb/infrastructure/models/moviedb/movie_images_response.dart';
+import 'package:moviedb/infrastructure/models/moviedb/movie_moviedb.dart';
+import 'package:moviedb/infrastructure/models/moviedb/moviedb_response.dart';
 import 'package:dio/dio.dart';
 
 class MoviedbDatasource extends MoviesDatasource {

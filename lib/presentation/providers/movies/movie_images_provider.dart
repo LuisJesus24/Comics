@@ -1,5 +1,5 @@
-import 'package:comics/domain/entities/movie_images.dart';
-import 'package:comics/presentation/providers/movies/movies_repository_provider.dart';
+import 'package:moviedb/domain/entities/movie_images.dart';
+import 'package:moviedb/presentation/providers/movies/movies_repository_provider.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
 

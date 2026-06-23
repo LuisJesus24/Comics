@@ -1,5 +1,5 @@
-import 'package:comics/domain/entities/actor.dart';
-import 'package:comics/infrastructure/models/moviedb/credits_reponse.dart';
+import 'package:moviedb/domain/entities/actor.dart';
+import 'package:moviedb/infrastructure/models/moviedb/credits_reponse.dart';
 
 class ActorMapper {
   static Actor castToEntity(Cast cast) =>

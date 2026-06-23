@@ -1,4 +1,4 @@
-import 'package:comics/presentation/providers/storage/local_storage_provider.dart';
+import 'package:moviedb/presentation/providers/storage/local_storage_provider.dart';
 import 'package:riverpod/riverpod.dart';
 
 final isFavoriteMovieProvider = FutureProvider.family<bool, int>((

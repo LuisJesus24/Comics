@@ -1,5 +1,5 @@
-name: comics
-description: "A new Flutter project."
+name: moviedb
+description: "A Flutter application for exploring movies using The Movie Database API."
 publish_to: 'none'
 version: 0.1.0+1
 

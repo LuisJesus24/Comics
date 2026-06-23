@@ -1,4 +1,4 @@
-# Comics 🎬
+# moviedb 🎬
 
 Una aplicación Flutter para explorar películas usando la API de The Movie Database (TMDb).
 
@@ -170,4 +170,4 @@ Las contribuciones son bienvenidas. Por favor:
 
 Luis Jesús - [@LuisJesus24](https://github.com/LuisJesus24)
 
-Proyecto: [Comics - GitHub](https://github.com/LuisJesus24/Comics)
+Proyecto: [moviedb - GitHub](https://github.com/LuisJesus24/Comics)

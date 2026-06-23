@@ -1,9 +1,9 @@
-import 'package:comics/presentation/widgets/movies/cards/movie_card.dart';
-import 'package:comics/presentation/widgets/movies/cards/movie_card_type.dart';
-import 'package:comics/presentation/widgets/movies/listviews/movie_horizontal_listview.dart';
+import 'package:moviedb/presentation/widgets/movies/cards/movie_card.dart';
+import 'package:moviedb/presentation/widgets/movies/cards/movie_card_type.dart';
+import 'package:moviedb/presentation/widgets/movies/listviews/movie_horizontal_listview.dart';
 import 'package:flutter/material.dart';
-import 'package:comics/domain/entities/movie.dart';
-import 'package:comics/presentation/widgets/movies/movie_carousel/movie_carousel_item.dart';
+import 'package:moviedb/domain/entities/movie.dart';
+import 'package:moviedb/presentation/widgets/movies/movie_carousel/movie_carousel_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

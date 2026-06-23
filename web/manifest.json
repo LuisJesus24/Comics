@@ -1,11 +1,11 @@
 {
-    "name": "comics",
-    "short_name": "comics",
+    "name": "MovieDB",
+    "short_name": "MovieDB",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "A Flutter application for exploring movies using The Movie Database API.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

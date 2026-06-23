@@ -1,4 +1,4 @@
-import 'package:comics/domain/entities/actor.dart';
+import 'package:moviedb/domain/entities/actor.dart';
 
 abstract class ActorsDatasources {
   Future<List<Actor>> getActorsByMovie(String movieId);

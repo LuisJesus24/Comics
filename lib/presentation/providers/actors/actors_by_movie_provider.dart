@@ -1,5 +1,5 @@
-import 'package:comics/domain/entities/actor.dart';
-import 'package:comics/presentation/providers/actors/actors_repository_provider.dart';
+import 'package:moviedb/domain/entities/actor.dart';
+import 'package:moviedb/presentation/providers/actors/actors_repository_provider.dart';
 import 'package:riverpod/legacy.dart';
 
 final actorsByMovieProvider = StateNotifierProvider<ActorsByMovieNotifier,Map<String, List<Actor>>>((ref) {

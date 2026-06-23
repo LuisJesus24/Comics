@@ -1,10 +1,10 @@
-import 'package:comics/presentation/widgets/movies/components/movie_card_info.dart';
+import 'package:moviedb/presentation/widgets/movies/components/movie_card_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:comics/domain/entities/movie.dart';
+import 'package:moviedb/domain/entities/movie.dart';
 
-import 'package:comics/presentation/providers/providers.dart';
+import 'package:moviedb/presentation/providers/providers.dart';
 import 'package:go_router/go_router.dart';
 
 import '../components/movie_backdrop.dart';

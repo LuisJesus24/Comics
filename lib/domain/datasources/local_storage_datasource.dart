@@ -1,4 +1,4 @@
-import 'package:comics/domain/entities/movie.dart';
+import 'package:moviedb/domain/entities/movie.dart';
 
 abstract class LocalStorageDatasource {
   Future<void> toggleFavoriteMovie(Movie movie);

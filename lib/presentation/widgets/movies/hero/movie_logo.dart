@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:comics/domain/entities/movie.dart';
-import 'package:comics/domain/entities/movie_images.dart';
+import 'package:moviedb/domain/entities/movie.dart';
+import 'package:moviedb/domain/entities/movie_images.dart';
 
 import '../components/movie_logo_content.dart';
 

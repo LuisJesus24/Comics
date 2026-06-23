@@ -1,6 +1,6 @@
-import 'package:comics/domain/entities/movie.dart';
-import 'package:comics/domain/repositories/local_storage_repository.dart';
-import 'package:comics/presentation/providers/storage/local_storage_provider.dart';
+import 'package:moviedb/domain/entities/movie.dart';
+import 'package:moviedb/domain/repositories/local_storage_repository.dart';
+import 'package:moviedb/presentation/providers/storage/local_storage_provider.dart';
 import 'package:riverpod/legacy.dart';
 
 final favoriteMoviesprovider = StateNotifierProvider<StorageMoviesNotifier, Map<int, Movie>>((ref) {

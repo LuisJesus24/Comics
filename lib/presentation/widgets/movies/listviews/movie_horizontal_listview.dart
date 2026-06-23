@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:comics/domain/entities/movie.dart';
+import 'package:moviedb/domain/entities/movie.dart';
 
 import '../cards/movie_card.dart';
 import '../cards/movie_card_type.dart';

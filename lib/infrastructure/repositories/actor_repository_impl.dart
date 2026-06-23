@@ -1,6 +1,6 @@
-import 'package:comics/domain/datasources/actors_datasources.dart';
-import 'package:comics/domain/entities/actor.dart';
-import 'package:comics/domain/repositories/actors_repository.dart';
+import 'package:moviedb/domain/datasources/actors_datasources.dart';
+import 'package:moviedb/domain/entities/actor.dart';
+import 'package:moviedb/domain/repositories/actors_repository.dart';
 
 class ActorRepositoryImpl extends ActorsRepository {
   final ActorsDatasources datasources;

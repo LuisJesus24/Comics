@@ -1,4 +1,4 @@
-import 'package:comics/infrastructure/models/moviedb/movie_images_response.dart';
+import 'package:moviedb/infrastructure/models/moviedb/movie_images_response.dart';
 
 import '../../domain/entities/movie_images.dart';
 

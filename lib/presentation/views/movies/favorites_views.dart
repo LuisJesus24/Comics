@@ -1,5 +1,5 @@
-import 'package:comics/presentation/providers/storage/favorites_movies_provider.dart';
-import 'package:comics/presentation/widgets/shared/custom_appbar.dart';
+import 'package:moviedb/presentation/providers/storage/favorites_movies_provider.dart';
+import 'package:moviedb/presentation/widgets/shared/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';

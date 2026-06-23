@@ -1,5 +1,5 @@
-import 'package:comics/domain/entities/movie.dart';
-import 'package:comics/domain/entities/movie_images.dart';
+import 'package:moviedb/domain/entities/movie.dart';
+import 'package:moviedb/domain/entities/movie_images.dart';
 
 abstract class MoviesDatasource {
   Future<List<Movie>> getNowPlaying({int page = 1});

@@ -1,4 +1,4 @@
-import 'package:comics/presentation/widgets/movies/components/movie_logo_content.dart';
+import 'package:moviedb/presentation/widgets/movies/components/movie_logo_content.dart';
 import 'package:flutter/material.dart';
 
 class MovieCardLogo extends StatelessWidget {

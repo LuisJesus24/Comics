@@ -1,6 +1,6 @@
-import 'package:comics/domain/entities/movie.dart';
-import 'package:comics/presentation/widgets/movies/movie_carousel/movie_carousel_image.dart';
-import 'package:comics/presentation/widgets/widgets.dart';
+import 'package:moviedb/domain/entities/movie.dart';
+import 'package:moviedb/presentation/widgets/movies/movie_carousel/movie_carousel_image.dart';
+import 'package:moviedb/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class MovieCarouselItem extends StatelessWidget {

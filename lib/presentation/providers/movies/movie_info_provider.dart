@@ -1,5 +1,5 @@
-import 'package:comics/domain/entities/movie.dart';
-import 'package:comics/presentation/providers/movies/movies_repository_provider.dart';
+import 'package:moviedb/domain/entities/movie.dart';
+import 'package:moviedb/presentation/providers/movies/movies_repository_provider.dart';
 import 'package:riverpod/legacy.dart';
 
 final movieInfoProvider = StateNotifierProvider<MovieMapNotifier,Map<String, Movie>>((ref) {

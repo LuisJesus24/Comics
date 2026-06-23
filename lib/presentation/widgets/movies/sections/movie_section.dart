@@ -1,7 +1,7 @@
-import 'package:comics/presentation/widgets/movies/listviews/movie_horizontal_listview.dart';
+import 'package:moviedb/presentation/widgets/movies/listviews/movie_horizontal_listview.dart';
 import 'package:flutter/material.dart';
 
-import 'package:comics/domain/entities/movie.dart';
+import 'package:moviedb/domain/entities/movie.dart';
 
 import '../cards/movie_card_type.dart';
 

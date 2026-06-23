@@ -1,7 +1,7 @@
-import 'package:comics/domain/entities/movie.dart';
-import 'package:comics/domain/entities/movie_images.dart';
-import 'package:comics/domain/repositories/movies_repository.dart';
-import 'package:comics/infrastructure/datasources/moviedb_datasource.dart';
+import 'package:moviedb/domain/entities/movie.dart';
+import 'package:moviedb/domain/entities/movie_images.dart';
+import 'package:moviedb/domain/repositories/movies_repository.dart';
+import 'package:moviedb/infrastructure/datasources/moviedb_datasource.dart';
 
 class MovieRepositoryImpl extends MoviesRepository {
   final MoviedbDatasource moviedbDatasource;

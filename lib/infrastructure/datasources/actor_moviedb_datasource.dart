@@ -1,8 +1,8 @@
-import 'package:comics/config/constants/environment.dart';
-import 'package:comics/domain/datasources/actors_datasources.dart';
-import 'package:comics/domain/entities/actor.dart';
-import 'package:comics/infrastructure/mappers/actor_mapper.dart';
-import 'package:comics/infrastructure/models/moviedb/credits_reponse.dart';
+import 'package:moviedb/config/constants/environment.dart';
+import 'package:moviedb/domain/datasources/actors_datasources.dart';
+import 'package:moviedb/domain/entities/actor.dart';
+import 'package:moviedb/infrastructure/mappers/actor_mapper.dart';
+import 'package:moviedb/infrastructure/models/moviedb/credits_reponse.dart';
 import 'package:dio/dio.dart';
 
 class ActorMoviedbDatasource extends ActorsDatasources {

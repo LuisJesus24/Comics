@@ -1,5 +1,5 @@
-import 'package:comics/presentation/views/views.dart';
-import 'package:comics/presentation/widgets/shared/custom_bottom_navigation.dart';
+import 'package:moviedb/presentation/views/views.dart';
+import 'package:moviedb/presentation/widgets/shared/custom_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {

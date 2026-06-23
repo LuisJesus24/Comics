@@ -1,14 +1,14 @@
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:comics/domain/entities/movie.dart';
-import 'package:comics/presentation/providers/actors/actors_by_movie_provider.dart';
-import 'package:comics/presentation/providers/movies/movie_images_provider.dart';
-import 'package:comics/presentation/providers/movies/movie_info_provider.dart';
-import 'package:comics/presentation/providers/storage/Is_favorite_movie_provider.dart';
-import 'package:comics/presentation/providers/storage/favorites_movies_provider.dart';
-import 'package:comics/presentation/widgets/movies/movie_metadata.dart';
-import 'package:comics/presentation/widgets/widgets.dart';
+import 'package:moviedb/domain/entities/movie.dart';
+import 'package:moviedb/presentation/providers/actors/actors_by_movie_provider.dart';
+import 'package:moviedb/presentation/providers/movies/movie_images_provider.dart';
+import 'package:moviedb/presentation/providers/movies/movie_info_provider.dart';
+import 'package:moviedb/presentation/providers/storage/Is_favorite_movie_provider.dart';
+import 'package:moviedb/presentation/providers/storage/favorites_movies_provider.dart';
+import 'package:moviedb/presentation/widgets/movies/movie_metadata.dart';
+import 'package:moviedb/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
