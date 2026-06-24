@@ -18,7 +18,7 @@ export 'movies/cards/movie_card_type.dart';
 //Components
 export 'movies/components/movie_backdrop.dart';
 export 'movies/components/movie_card_info.dart';
-export 'movies/components/movie_gradient.dart';
+export 'movies/movie_gradient.dart';
 export 'movies/components/movie_logo_content.dart';
 
 //Hero

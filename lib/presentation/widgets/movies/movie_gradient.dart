@@ -8,10 +8,10 @@ class MovieGradient {
       end: Alignment.bottomCenter,
       colors: [
         Colors.transparent,
-        Colors.black87
+        Colors.black
       ],
       stops: [
-        0.7,
+        0.5,
         1.0
       ]
     );

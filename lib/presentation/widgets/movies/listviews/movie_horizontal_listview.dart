@@ -31,7 +31,10 @@ class MovieHorizontalListView extends StatelessWidget {
         itemBuilder: (_, index) {
           final movie = movies[index];
 
-          return MovieCard(movie: movie, type: type);
+          return Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: MovieCard(movie: movie, type: type),
+          );
         },
       ),
     );

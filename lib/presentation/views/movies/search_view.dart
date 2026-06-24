@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:moviedb/presentation/providers/movies/movies_providers.dart';
 import 'package:moviedb/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -78,11 +80,7 @@ class SearchViewState extends ConsumerState<SearchView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.search,
-                    size: 64,
-                    color: colors.outline,
-                  ),
+                  Icon(Icons.search, size: 64, color: colors.outline),
                   const SizedBox(height: 16),
                   Text(
                     'Busca tus películas favoritas',
@@ -100,11 +98,7 @@ class SearchViewState extends ConsumerState<SearchView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.movie_outlined,
-                    size: 64,
-                    color: colors.outline,
-                  ),
+                  Icon(Icons.movie_outlined, size: 64, color: colors.outline),
                   const SizedBox(height: 16),
                   Text(
                     'No se encontraron películas',
@@ -125,20 +119,26 @@ class SearchViewState extends ConsumerState<SearchView> {
           )
         else
           SliverPadding(
-            padding: const EdgeInsets.all(4),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200,
-                mainAxisSpacing: 4,
-                crossAxisSpacing: 2,
-                childAspectRatio: 0.65,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => MovieCard(
-                  movie: searchResults[index],
-                  type: MovieCardType.poster,
-                ),
-                childCount: searchResults.length,
+            padding: const EdgeInsets.symmetric(horizontal: 0),
+            sliver: SliverToBoxAdapter(
+              child: MasonryGridView.count(
+                crossAxisCount: 3,
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8,
+
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                primary: false,
+
+                itemCount: searchResults.length,
+                itemBuilder: (context, index) {
+                  final movie = searchResults[index];
+                  return SizedBox(
+                    
+                    height: (index % 5 + 1) * 100,
+                    child: MovieCard(movie: movie, type: MovieCardType.poster)
+                  );
+                },
               ),
             ),
           ),

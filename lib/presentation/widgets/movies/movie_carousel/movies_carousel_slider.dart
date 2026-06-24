@@ -1,6 +1,4 @@
-import 'package:moviedb/presentation/widgets/movies/cards/movie_card.dart';
-import 'package:moviedb/presentation/widgets/movies/cards/movie_card_type.dart';
-import 'package:moviedb/presentation/widgets/movies/listviews/movie_horizontal_listview.dart';
+
 import 'package:flutter/material.dart';
 import 'package:moviedb/domain/entities/movie.dart';
 import 'package:moviedb/presentation/widgets/movies/movie_carousel/movie_carousel_item.dart';

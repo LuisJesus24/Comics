@@ -8,7 +8,7 @@ import 'package:moviedb/presentation/providers/providers.dart';
 import 'package:go_router/go_router.dart';
 
 import '../components/movie_backdrop.dart';
-import '../components/movie_gradient.dart';
+import '../movie_gradient.dart';
 
 import 'movie_card_type.dart';
 
@@ -55,7 +55,7 @@ class MovieCardState extends ConsumerState<MovieCard> {
         aspectRatio: isPoster ? 2 / 3 : 16 / 9,
 
         child: Container(
-          margin: const EdgeInsets.all(12),
+          margin: const EdgeInsets.all(0),
 
           child: Stack(
             fit: StackFit.expand,
