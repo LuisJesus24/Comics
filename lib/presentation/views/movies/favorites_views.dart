@@ -41,18 +41,7 @@ class FavoritesViewsState extends ConsumerState<FavoritesViews> {
                 fit: StackFit.expand,
                 children: [
                   MovieCard(movie: movie, type: MovieCardType.poster),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: MovieMetadata(movie: movie),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      gradient: MovieGradient.bottomCenter,
-                    ),
-                  ),
+                  
                 ],
               );
             },

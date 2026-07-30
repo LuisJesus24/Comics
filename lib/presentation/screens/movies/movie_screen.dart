@@ -1,16 +1,17 @@
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moviedb/domain/entities/movie.dart';
 import 'package:moviedb/presentation/providers/actors/actors_by_movie_provider.dart';
 import 'package:moviedb/presentation/providers/movies/movie_images_provider.dart';
 import 'package:moviedb/presentation/providers/movies/movie_info_provider.dart';
-import 'package:moviedb/presentation/providers/storage/Is_favorite_movie_provider.dart';
+import 'package:moviedb/presentation/providers/movies/movie_trailer_provider.dart';
 import 'package:moviedb/presentation/providers/storage/favorites_movies_provider.dart';
 import 'package:moviedb/presentation/widgets/movies/movie_metadata.dart';
 import 'package:moviedb/presentation/widgets/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MovieScreen extends ConsumerStatefulWidget {
   static const name = 'movie-screen';
@@ -33,8 +34,9 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
     super.initState();
 
     ref.read(movieInfoProvider.notifier).loadMovie(widget.movieId);
-    ref.read(movieImagesProvider.notifier).imageMovie(widget.movieId);
+    ref.read(movieImagesProvider.notifier).imageOfMovies(widget.movieId);
     ref.read(actorsByMovieProvider.notifier).loadActos(widget.movieId);
+    ref.read(movieTrailerProvider.notifier).loadTrailer(widget.movieId);
 
     _scrollController.addListener(() {
       final offset = _scrollController.offset;
@@ -56,6 +58,7 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
   Widget build(BuildContext context) {
     final movie = ref.watch(movieInfoProvider)[widget.movieId];
     final imageMovie = ref.watch(movieImagesProvider)[widget.movieId];
+    final trailer = ref.watch(movieTrailerProvider)[widget.movieId];
     final favoritesMap = ref.watch(favoriteMoviesprovider);
     final isFavorite = favoritesMap.containsKey(movie?.id);
 
@@ -124,12 +127,12 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
                           ),
                           IconButton(
                           onPressed: () async {
-                            // ✅ Actualizar favoritos
+                            //  Actualizar favoritos
                             ref
                                 .read(favoriteMoviesprovider.notifier)
                                 .toggleFavoriteMovie(movie);
                           },
-                          // ✅ CAMBIAR ESTO - Usar isFavorite directamente
+                          //  CAMBIAR ESTO - Usar isFavorite directamente
                           icon: Icon(
                             isFavorite
                                 ? Icons.favorite
@@ -225,7 +228,34 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
                               Center(
                                 child: IconButton(
                                   padding: EdgeInsets.zero,
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    if (trailer == null || trailer.key.isEmpty) {
+                                      if (!context.mounted) return;
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                          content: Text(
+                                            'No hay trailer disponible para esta película.',
+                                          ),
+                                        ),
+                                      );
+                                      return;
+                                    }
+
+                                    final uri = Uri.parse(
+                                      'https://www.youtube.com/watch?v=${trailer.key}',
+                                    );
+
+                                    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+                                      if (!context.mounted) return;
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                          content: Text(
+                                            'No se pudo abrir el trailer.',
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  },
                                   icon: Icon(
                                     Icons.play_arrow_rounded,
                                     color: Colors.white,
@@ -335,7 +365,6 @@ class _MovieDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final textStyles = Theme.of(context).textTheme;
 
     return Container(
       width: size.width * 0.4,

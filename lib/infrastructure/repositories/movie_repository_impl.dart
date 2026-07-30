@@ -1,5 +1,6 @@
 import 'package:moviedb/domain/entities/movie.dart';
 import 'package:moviedb/domain/entities/movie_images.dart';
+import 'package:moviedb/domain/entities/movie_video.dart';
 import 'package:moviedb/domain/repositories/movies_repository.dart';
 import 'package:moviedb/infrastructure/datasources/moviedb_datasource.dart';
 
@@ -36,6 +37,11 @@ class MovieRepositoryImpl extends MoviesRepository {
   @override
   Future<Movie> getMovieById(String movieId) {
     return moviedbDatasource.getMovieById(movieId);
+  }
+
+  @override
+  Future<MovieVideo?> getMovieTrailer(String movieId) {
+    return moviedbDatasource.getMovieTrailer(movieId);
   }
 
   @override

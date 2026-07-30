@@ -2,11 +2,13 @@ import 'package:moviedb/config/constants/environment.dart';
 import 'package:moviedb/domain/datasources/movies_datasource.dart';
 import 'package:moviedb/domain/entities/movie.dart';
 import 'package:moviedb/domain/entities/movie_images.dart';
+import 'package:moviedb/domain/entities/movie_video.dart';
 import 'package:moviedb/infrastructure/mappers/movie_images_mapper.dart';
 import 'package:moviedb/infrastructure/mappers/movie_mapper.dart';
 import 'package:moviedb/infrastructure/models/moviedb/movie_details.dart';
 import 'package:moviedb/infrastructure/models/moviedb/movie_images_response.dart';
 import 'package:moviedb/infrastructure/models/moviedb/movie_moviedb.dart';
+import 'package:moviedb/infrastructure/models/moviedb/movie_videos_response.dart';
 import 'package:moviedb/infrastructure/models/moviedb/moviedb_response.dart';
 import 'package:dio/dio.dart';
 
@@ -93,6 +95,24 @@ class MoviedbDatasource extends MoviesDatasource {
     final movieDbResponse = MovieDetails.fromJson(response.data);
 
     return MovieMapper.movieDetailsToEntity(movieDbResponse);
+  }
+
+  @override
+  Future<MovieVideo?> getMovieTrailer(String movieId) async {
+    final response = await dio.get('/movie/$movieId/videos');
+
+    final videosResponse = MovieVideosResponse.fromJson(response.data);
+
+    final trailer = videosResponse.results.where((video) {
+      return video.site.toLowerCase() == 'youtube' &&
+          video.type.toLowerCase() == 'trailer';
+    }).toList();
+
+    if (trailer.isEmpty) {
+      return null;
+    }
+
+    return trailer.first;
   }
 
   @override
